@@ -1,6 +1,7 @@
 import controles.Mercearia;
 import modelos.Cliente;
 import modelos.Produto;
+import modelos.Venda;
 
 public class Main {
 
@@ -43,12 +44,17 @@ public class Main {
     public static void main(String[] args) {
 
         Mercearia mercearia = geraMercearia();
+        Cliente c = mercearia.buscarCliente("Cliente 0");
+        Produto p = mercearia.buscarProduto("Produto 0");
+        Produto p1 = mercearia.buscarProduto("Produto 1");
 
-        Produto p = new Produto("Produto 0",0);
+        Venda venda = new Venda(c);
+        venda.adiciona(p);
+        venda.adiciona(p1);
 
-        mercearia.adiciona(p);
+        System.out.println(venda);
+        System.out.println(venda.calculaTotal());
 
-        System.out.println(mercearia);
 
 
     }
