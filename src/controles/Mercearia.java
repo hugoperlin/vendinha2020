@@ -37,10 +37,14 @@ public class Mercearia {
 
     public boolean adiciona(Produto produto){
 
-        this.produtos[totalProdutos] = produto;
-        totalProdutos += 1;
+        if(buscarProduto(produto.getNome())==null){
+            this.produtos[totalProdutos] = produto;
+            totalProdutos += 1;
 
-        return true;
+            return true;
+        }
+
+        return false;
 
     }
 

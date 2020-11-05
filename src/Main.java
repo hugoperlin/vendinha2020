@@ -44,8 +44,11 @@ public class Main {
 
         Mercearia mercearia = geraMercearia();
 
+        Produto p = new Produto("Produto 0",0);
 
-        System.out.println(mercearia.buscarProduto("Produto 10"));
+        mercearia.adiciona(p);
+
+        System.out.println(mercearia);
 
 
     }
