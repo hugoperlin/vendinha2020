@@ -44,7 +44,9 @@ public class Main {
 
         Mercearia mercearia = geraMercearia();
 
-        System.out.println(mercearia);
+
+        System.out.println(mercearia.buscarProduto("Produto 10"));
+
 
     }
 

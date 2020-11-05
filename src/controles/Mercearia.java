@@ -56,6 +56,18 @@ public class Mercearia {
 
     }
 
+    public Produto buscarProduto(String nome){
+
+        for(int i=0;i<totalProdutos;i++){
+            if(this.produtos[i].getNome().equals(nome)){
+                return this.produtos[i];
+            }
+        }
+
+        return null;
+
+    }
+
     public String toString(){
         String str = nome+"\n";
 
