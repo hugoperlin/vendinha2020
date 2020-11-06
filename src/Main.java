@@ -1,7 +1,8 @@
 import controles.Mercearia;
 import modelos.Cliente;
 import modelos.Produto;
-import modelos.Venda;
+
+import java.util.Scanner;
 
 public class Main {
 
@@ -25,8 +26,25 @@ public class Main {
         return produtos;
     }
 
-    private static Mercearia geraMercearia(){
-        Mercearia mercearia = new Mercearia("Teste");
+    private static String menu(){
+
+        String str="";
+
+        str += "####Vendinha####\n";
+        str += "1 - Cadastrar Cliente\n";
+        str += "2 - Buscar Cliente\n";
+        str += "3 - Cadastrar Produto\n";
+        str += "4 - Buscar Produto\n";
+        str += "5 - Realizar Venda\n";
+        str += "6 - Mostrar Relatório\n";
+        str += "0 - Sair\n";
+        str += "Digite uma opção:";
+
+        return str;
+
+    }
+
+    public static void inicializaMercearia(Mercearia mercearia){
         Cliente[] clientes = geraClientes();
 
         for(int i=0;i<clientes.length;i++){
@@ -34,29 +52,147 @@ public class Main {
         }
 
         Produto[] produtos = geraProdutos();
-        for(int i=0;i< produtos.length;i++){
+        for(int i=0;i<produtos.length;i++){
             mercearia.adiciona(produtos[i]);
         }
-        return mercearia;
-    }
 
+    }
 
     public static void main(String[] args) {
 
-        Mercearia mercearia = geraMercearia();
-        Cliente c = mercearia.buscarCliente("Cliente 0");
-        Produto p = mercearia.buscarProduto("Produto 0");
-        Produto p1 = mercearia.buscarProduto("Produto 1");
+        Scanner scan = new Scanner(System.in);
+        int op = 0;
+        String nome,email,telefone;
+        double preco;
+        Produto produto;
+        Cliente cliente;
 
-        Venda venda = new Venda(c);
-        venda.adiciona(p);
-        venda.adiciona(p1);
+        Mercearia mercearia = new Mercearia("Vendinha");
 
-        System.out.println(venda);
-        System.out.println(venda.calculaTotal());
+        //isso serve somente para testes...
+        inicializaMercearia(mercearia);
+
+        do{
+            System.out.println(menu());
+            op = scan.nextInt();
+
+            switch (op){
+                case 1: //cadastrar cliente
+
+                    scan.nextLine(); //limpar o buffer
+                    System.out.print("Nome:");
+                    nome = scan.nextLine();
+                    System.out.println("Telefone:");
+                    telefone = scan.nextLine();
+                    System.out.println("E-mail:");
+                    email = scan.nextLine();
+
+                    Cliente c = new Cliente(nome,email,telefone);
+                    if(mercearia.adiciona(c)){
+                        System.out.println("Cliente cadastrado!!");
+                    }else{
+                        System.out.println("Erro ao cadastrar cliente!!");
+                    }
+
+                    break;
+                case 2: //buscar cliente
+                    scan.nextLine();
+                    System.out.println("Nome:");
+                    nome = scan.nextLine();
+                    cliente = mercearia.buscarCliente(nome);
+                    if(cliente != null){
+                        System.out.println("Cliente encontrado!!");
+                        System.out.println(cliente);
+                    }else{
+                        System.out.println("Cliente não encontrado!!");
+                    }
+
+                    break;
+                case 3: //cadastrar produto
+                    scan.nextLine();
+                    System.out.println("Nome:");
+                    nome = scan.nextLine();
+                    System.out.println("Preço:");
+                    preco = scan.nextDouble();
+
+                    produto = new Produto(nome,preco);
+
+                    if(mercearia.adiciona(produto)){
+                        System.out.println("Produto cadastrado com sucesso!!");
+                    }else{
+                        System.out.println("Erro ao cadastrar produto");
+                    }
+
+
+                    break;
+                case 4: // buscar produto
+                    scan.nextLine();
+                    System.out.println("Nome:");
+                    nome = scan.nextLine();
+
+                    produto = mercearia.buscarProduto(nome);
+
+                    if(produto != null){
+                        System.out.println("Produto encontrado!!");
+                        System.out.println(produto);
+                    }else{
+                        System.out.println("Produto não encontrado!!");
+                    }
+
+
+                    break;
+                case 5: // realizar venda
+
+                    Cliente[] clientes = mercearia.getClientes();
+                    for(int i=0;i< clientes.length;i++){
+                        if(clientes[i] != null){
+                            System.out.println(""+i+"-"+clientes[i]);
+                        }
+
+                    }
+                    System.out.println("Digite o número do cliente:");
+                    op = scan.nextInt();
+                    if(op >=0 && op < clientes.length){
+                        cliente = clientes[op];
+
+                        //montando o vetor de produtos para serem vendidos
+                        Produto[] produtosVenda = new Produto[10];
+                        Produto[] produtos = mercearia.getProdutos();
+                        int indexProdutos = 0;
+                        do{
+                            for(int i=0;i<produtos.length;i++){
+                                if(produtos[i] != null){
+                                    System.out.println(""+i+"-"+produtos[i]);
+                                }
+
+                            }
+                            System.out.println("Digite o número do produto (-1 finalizar):");
+                            op = scan.nextInt();
+                            if(op >= 0 && op < produtos.length){
+                                produtosVenda[indexProdutos] = produtos[op];
+                                indexProdutos += 1;
+                            }
+                        }while(op != -1);
+
+                        mercearia.realizaVenda(cliente,produtosVenda);
+                        System.out.println("Venda finalizada!!");
+
+                    }
+
+
+                    break;
+                case 6: // mostrar relatorio
+                    System.out.println(mercearia);
+                    break;
+            }
+
+
+        }while(op != 0);
+
 
 
 
     }
+
 
 }

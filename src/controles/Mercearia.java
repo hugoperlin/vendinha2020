@@ -2,6 +2,7 @@ package controles;
 
 import modelos.Cliente;
 import modelos.Produto;
+import modelos.Venda;
 
 public class Mercearia {
 
@@ -11,15 +12,19 @@ public class Mercearia {
     private static int MAX_PRODUTOS = 50;
     private static int totalProdutos = 0;
 
+    private static int MAX_VENDAS = 50;
+    private static int totalVendas = 0;
 
     private String nome;
     private Cliente[] clientes;
     private Produto[] produtos;
+    private Venda[] vendas;
 
     public Mercearia(String nome){
         this.nome = nome;
         this.clientes = new Cliente[MAX_CLIENTES];
         this.produtos = new Produto[MAX_PRODUTOS];
+        this.vendas = new Venda[MAX_VENDAS];
     }
 
     public boolean adiciona(Cliente cliente){
@@ -72,6 +77,35 @@ public class Mercearia {
 
     }
 
+    public Venda realizaVenda(Cliente cliente, Produto[] produtos){
+
+        Venda venda = new Venda(cliente);
+
+        for(int i=0;i<produtos.length;i++){
+            if(produtos[i] != null){
+                venda.adiciona(produtos[i]);
+            }
+
+        }
+
+        venda.calculaTotal();
+
+        this.vendas[totalVendas] = venda;
+
+        totalVendas += 1;
+
+        return venda;
+
+    }
+
+    public Cliente[] getClientes() {
+        return clientes;
+    }
+
+    public Produto[] getProdutos() {
+        return produtos;
+    }
+
     public String toString(){
         String str = nome+"\n";
 
@@ -87,6 +121,13 @@ public class Mercearia {
 
         for(int i=0;i<totalProdutos;i++){
             str += "\t"+this.produtos[i]+";\n";
+        }
+        str += "]\n";
+
+        str += "Vendas:[\n";
+
+        for(int i=0;i<totalVendas;i++){
+            str += "\t"+this.vendas[i]+";\n";
         }
         str += "]\n";
 

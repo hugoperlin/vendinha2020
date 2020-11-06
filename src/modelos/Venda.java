@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Venda {
 
     private static int MAX_ITEMS=10;
-    private static int totalItems=0;
+    private int totalItems=0; //não pode ser static
 
     private String data;
     private Cliente cliente;
@@ -66,7 +66,7 @@ public class Venda {
             str += "\t\t"+this.items[i]+"\n";
         }
         str += "\t]";
-
+        str += "\t Total: R$"+total;
         return str;
     }
 
