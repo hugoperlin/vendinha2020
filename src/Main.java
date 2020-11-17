@@ -174,7 +174,23 @@ public class Main {
                             }
                         }while(op != -1);
 
-                        mercearia.realizaVenda(cliente,produtosVenda);
+                        System.out.println("Digite o tipo de venda:1 - à vista 2 - à prazo");
+                        op = scan.nextInt();
+
+                        double valor=0;
+                        System.out.println("Digite o valor "+(op==1?"de desconto:":"de juros:"));
+                        valor = scan.nextDouble();
+
+                        if(op==1){
+                            mercearia.realizaVendaAVista(cliente,produtosVenda,valor);
+                        }else{
+                            mercearia.realizaVendaAPrazo(cliente,produtosVenda,valor);
+                        }
+
+
+
+
+
                         System.out.println("Venda finalizada!!");
 
                     }

@@ -1,8 +1,6 @@
 package controles;
 
-import modelos.Cliente;
-import modelos.Produto;
-import modelos.Venda;
+import modelos.*;
 
 public class Mercearia {
 
@@ -77,12 +75,11 @@ public class Mercearia {
 
     }
 
-    public Venda realizaVenda(Cliente cliente, Produto[] produtos){
+    private Venda registraVenda(Venda venda, Produto[] produtos){
 
-        Venda venda = new Venda(cliente);
 
         for(int i=0;i<produtos.length;i++){
-            if(produtos[i] != null){
+            if(produtos[i]!=null){
                 venda.adiciona(produtos[i]);
             }
 
@@ -97,6 +94,28 @@ public class Mercearia {
         return venda;
 
     }
+
+
+    public VendaAVista realizaVendaAVista(Cliente cliente, Produto[] produtos, double desconto){
+
+        VendaAVista venda = new VendaAVista(cliente,desconto);
+
+        registraVenda(venda, produtos);
+
+        return venda;
+
+    }
+
+    public VendaAPrazo realizaVendaAPrazo(Cliente cliente, Produto[] produtos, double juros){
+        VendaAPrazo venda = new VendaAPrazo(cliente,juros);
+
+        registraVenda(venda,produtos);
+
+        return venda;
+    }
+
+
+
 
     public Cliente[] getClientes() {
         return clientes;

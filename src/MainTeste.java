@@ -52,7 +52,14 @@ public class MainTeste {
 
         Produto[] produtos = {p,p1};
 
-        mercearia.realizaVenda(c,produtos);
+        //mercearia.realizaVenda(c,produtos);
+
+
+        mercearia.realizaVendaAVista(c,produtos,5);
+
+        mercearia.realizaVendaAPrazo(c,produtos,5);
+
+
 
         System.out.println(mercearia);
 

@@ -2,15 +2,15 @@ package modelos;
 
 import java.time.LocalDate;
 
-public class Venda {
+public abstract class Venda {
 
     private static int MAX_ITEMS=10;
-    private int totalItems=0; //não pode ser static
+    private int totalItems=0;
 
     private String data;
     private Cliente cliente;
     private ItemVenda[] items;
-    private double total;
+    protected double total;
 
     public Venda(Cliente cliente){
         this.cliente = cliente;
@@ -29,17 +29,20 @@ public class Venda {
         return true;
     }
 
-    public double calculaTotal(){
-        double soma = 0.0;
+    public abstract double calculaTotal();
+
+    protected double calculaSubTotal(){
+
+        double soma=0;
 
         for(int i=0;i<totalItems;i++){
-            soma += this.items[i].getPreco();
+            soma += items[i].getPreco();
         }
 
-        this.total = soma;
-
         return soma;
+
     }
+
 
     public String getData() {
         return data;
