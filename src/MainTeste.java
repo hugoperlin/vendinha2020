@@ -3,7 +3,9 @@ import modelos.Cliente;
 import modelos.Produto;
 import modelos.Venda;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class MainTeste {
 
@@ -50,9 +52,12 @@ public class MainTeste {
         Produto p = mercearia.buscarProduto("Produto 0");
         Produto p1 = mercearia.buscarProduto("Produto 1");
 
-        Produto[] produtos = {p,p1};
+        ArrayList<Produto> produtos = new ArrayList<>();
 
-        //mercearia.realizaVenda(c,produtos);
+        produtos.add(p);
+        produtos.add(p1);
+        //mercearia.realizaVenda(c,produtos
+
 
 
         mercearia.realizaVendaAVista(c,produtos,5);

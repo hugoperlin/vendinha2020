@@ -2,34 +2,28 @@ package controles;
 
 import modelos.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Mercearia {
 
-    private static int MAX_CLIENTES = 50;
-    private static int totalClientes = 0;
-
-    private static int MAX_PRODUTOS = 50;
-    private static int totalProdutos = 0;
-
-    private static int MAX_VENDAS = 50;
-    private static int totalVendas = 0;
-
     private String nome;
-    private Cliente[] clientes;
-    private Produto[] produtos;
-    private Venda[] vendas;
+    private ArrayList<Cliente> clientes;
+    private ArrayList<Produto> produtos;
+    private ArrayList<Venda> vendas;
 
     public Mercearia(String nome){
         this.nome = nome;
-        this.clientes = new Cliente[MAX_CLIENTES];
-        this.produtos = new Produto[MAX_PRODUTOS];
-        this.vendas = new Venda[MAX_VENDAS];
+        this.clientes = new ArrayList<>();
+        this.produtos = new ArrayList<>();
+        this.vendas = new ArrayList<>();
     }
 
     public boolean adiciona(Cliente cliente){
 
         if(buscarCliente(cliente.getNome())==null){
-            this.clientes[totalClientes] = cliente;
-            totalClientes += 1;
+            this.clientes.add(cliente);
 
             return true;
         }
@@ -41,8 +35,7 @@ public class Mercearia {
     public boolean adiciona(Produto produto){
 
         if(buscarProduto(produto.getNome())==null){
-            this.produtos[totalProdutos] = produto;
-            totalProdutos += 1;
+            this.produtos.add(produto);
 
             return true;
         }
@@ -53,10 +46,11 @@ public class Mercearia {
 
     public Cliente buscarCliente(String nome){
 
-        for(int i=0;i<totalClientes;i++){
-            if(this.clientes[i].getNome().equals(nome)){
-                return this.clientes[i];
-            }
+        Cliente c = new Cliente(nome);
+        int pos = this.clientes.indexOf(c);
+
+        if(pos != -1){
+            return this.clientes.get(pos);
         }
 
         return null;
@@ -65,38 +59,35 @@ public class Mercearia {
 
     public Produto buscarProduto(String nome){
 
-        for(int i=0;i<totalProdutos;i++){
-            if(this.produtos[i].getNome().equals(nome)){
-                return this.produtos[i];
-            }
+        Produto p = new Produto(nome,0);
+
+        int pos = this.produtos.indexOf(p);
+
+        if(pos != -1){
+            return this.produtos.get(pos);
         }
 
         return null;
 
     }
 
-    private Venda registraVenda(Venda venda, Produto[] produtos){
+    private Venda registraVenda(Venda venda, ArrayList<Produto> produtos){
 
 
-        for(int i=0;i<produtos.length;i++){
-            if(produtos[i]!=null){
-                venda.adiciona(produtos[i]);
-            }
-
+        for(Produto produto:produtos){
+            venda.adiciona(produto);
         }
 
         venda.calculaTotal();
 
-        this.vendas[totalVendas] = venda;
-
-        totalVendas += 1;
+        this.vendas.add(venda);
 
         return venda;
 
     }
 
 
-    public VendaAVista realizaVendaAVista(Cliente cliente, Produto[] produtos, double desconto){
+    public VendaAVista realizaVendaAVista(Cliente cliente, ArrayList<Produto> produtos, double desconto){
 
         VendaAVista venda = new VendaAVista(cliente,desconto);
 
@@ -106,7 +97,7 @@ public class Mercearia {
 
     }
 
-    public VendaAPrazo realizaVendaAPrazo(Cliente cliente, Produto[] produtos, double juros){
+    public VendaAPrazo realizaVendaAPrazo(Cliente cliente, ArrayList<Produto> produtos, double juros){
         VendaAPrazo venda = new VendaAPrazo(cliente,juros);
 
         registraVenda(venda,produtos);
@@ -117,12 +108,12 @@ public class Mercearia {
 
 
 
-    public Cliente[] getClientes() {
-        return clientes;
+    public List<Cliente> getClientes() {
+        return Collections.unmodifiableList(this.clientes);
     }
 
-    public Produto[] getProdutos() {
-        return produtos;
+    public List<Produto> getProdutos() {
+        return Collections.unmodifiableList(this.produtos);
     }
 
     public String toString(){
@@ -130,23 +121,23 @@ public class Mercearia {
 
         str += "Clientes:[\n";
 
-        for(int i=0;i<totalClientes;i++){
-            str += "\t"+this.clientes[i]+";\n";
+        for(Cliente cliente:this.clientes){
+            str += "\t"+cliente+";\n";
         }
 
         str += "]\n";
 
         str += "Produtos:[\n";
 
-        for(int i=0;i<totalProdutos;i++){
-            str += "\t"+this.produtos[i]+";\n";
+        for(Produto produto:this.produtos){
+            str += "\t"+produto+";\n";
         }
         str += "]\n";
 
         str += "Vendas:[\n";
 
-        for(int i=0;i<totalVendas;i++){
-            str += "\t"+this.vendas[i]+";\n";
+        for(Venda venda:this.vendas){
+            str += "\t"+venda+";\n";
         }
         str += "]\n";
 

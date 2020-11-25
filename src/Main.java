@@ -2,6 +2,8 @@ import controles.Mercearia;
 import modelos.Cliente;
 import modelos.Produto;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -143,34 +145,28 @@ public class Main {
                     break;
                 case 5: // realizar venda
 
-                    Cliente[] clientes = mercearia.getClientes();
-                    for(int i=0;i< clientes.length;i++){
-                        if(clientes[i] != null){
-                            System.out.println(""+i+"-"+clientes[i]);
-                        }
+                    List<Cliente> clientes = mercearia.getClientes();
+                    for(int i=0;i< clientes.size();i++){
+                        System.out.println(""+i+"-"+clientes.get(i));
 
                     }
                     System.out.println("Digite o número do cliente:");
                     op = scan.nextInt();
-                    if(op >=0 && op < clientes.length){
-                        cliente = clientes[op];
+                    if(op >=0 && op < clientes.size()){
+                        cliente = clientes.get(op);
 
                         //montando o vetor de produtos para serem vendidos
-                        Produto[] produtosVenda = new Produto[10];
-                        Produto[] produtos = mercearia.getProdutos();
+                        ArrayList<Produto> produtosVenda = new ArrayList<>();
+                        List<Produto> produtos = mercearia.getProdutos();
                         int indexProdutos = 0;
                         do{
-                            for(int i=0;i<produtos.length;i++){
-                                if(produtos[i] != null){
-                                    System.out.println(""+i+"-"+produtos[i]);
-                                }
-
+                            for(int i=0;i<produtos.size();i++){
+                                System.out.println(""+i+"-"+produtos.get(i));
                             }
                             System.out.println("Digite o número do produto (-1 finalizar):");
                             op = scan.nextInt();
-                            if(op >= 0 && op < produtos.length){
-                                produtosVenda[indexProdutos] = produtos[op];
-                                indexProdutos += 1;
+                            if(op >= 0 && op < produtos.size()){
+                                produtosVenda.add(produtos.get(op));
                             }
                         }while(op != -1);
 
@@ -186,10 +182,6 @@ public class Main {
                         }else{
                             mercearia.realizaVendaAPrazo(cliente,produtosVenda,valor);
                         }
-
-
-
-
 
                         System.out.println("Venda finalizada!!");
 

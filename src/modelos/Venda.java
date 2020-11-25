@@ -1,30 +1,32 @@
 package modelos;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public abstract class Venda {
 
-    private static int MAX_ITEMS=10;
-    private int totalItems=0;
+
 
     private String data;
     private Cliente cliente;
-    private ItemVenda[] items;
+    private ArrayList<ItemVenda> items;
     protected double total;
 
     public Venda(Cliente cliente){
         this.cliente = cliente;
         this.data = LocalDate.now().toString();
-        this.items = new ItemVenda[MAX_ITEMS];
+
+        this.items = new ArrayList<>();
     }
 
     public boolean adiciona(Produto produto){
 
         ItemVenda item = new ItemVenda(produto);
 
-        this.items[totalItems] = item;
-
-        totalItems += 1;
+        this.items.add(item);
 
         return true;
     }
@@ -35,8 +37,8 @@ public abstract class Venda {
 
         double soma=0;
 
-        for(int i=0;i<totalItems;i++){
-            soma += items[i].getPreco();
+        for(int i=0;i<this.items.size();i++){
+            soma += this.items.get(i).getPreco();
         }
 
         return soma;
@@ -52,8 +54,8 @@ public abstract class Venda {
         return cliente;
     }
 
-    public ItemVenda[] getItems() {
-        return items;
+    public List<ItemVenda> getItems() {
+        return Collections.unmodifiableList(this.items);
     }
 
     public double getTotal() {
@@ -65,8 +67,8 @@ public abstract class Venda {
         str += "\t "+cliente+"\n";
 
         str += "\t Items:[\n";
-        for(int i=0;i<totalItems;i++){
-            str += "\t\t"+this.items[i]+"\n";
+        for(ItemVenda item:this.items){
+            str += "\t\t"+item+"\n";
         }
         str += "\t]";
         str += "\t Total: R$"+total;
