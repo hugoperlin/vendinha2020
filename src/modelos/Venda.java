@@ -1,14 +1,14 @@
 package modelos;
 
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.Collections;
 import java.util.List;
 
-public abstract class Venda {
-
-
+public abstract class Venda implements Serializable {
 
     private String data;
     private Cliente cliente;

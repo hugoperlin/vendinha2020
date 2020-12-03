@@ -2,11 +2,12 @@ package controles;
 
 import modelos.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Mercearia {
+public class Mercearia implements Serializable {
 
     private String nome;
     private ArrayList<Cliente> clientes;

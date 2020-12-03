@@ -1,8 +1,9 @@
 package modelos;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Produto {
+public class Produto implements Serializable {
 
     private String nome;
     private double preco;

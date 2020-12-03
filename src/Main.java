@@ -2,6 +2,7 @@ import controles.Mercearia;
 import modelos.Cliente;
 import modelos.Produto;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -60,6 +61,46 @@ public class Main {
 
     }
 
+
+    public static void salvarBinario(Mercearia mercearia){
+
+        try(ObjectOutputStream obs = new ObjectOutputStream(
+                new FileOutputStream(
+                        new File("vendinha.bin")
+                ))){
+
+
+            obs.writeObject(mercearia);
+
+
+        }catch (IOException e){
+            System.out.println("Problema ao escrever arquivo...!!!");
+            e.printStackTrace();
+        }
+    }
+
+    public static Mercearia lerBinario(){
+
+        try(ObjectInputStream obi = new ObjectInputStream(
+                new FileInputStream(
+                        new File("vendinha.bin")
+                ))){
+
+            Mercearia mercearia = (Mercearia) obi.readObject();
+            return mercearia;
+
+
+        }catch (IOException e){
+            System.out.println("Problema ao ler arquivo...!!!");
+            e.printStackTrace();
+        }catch (ClassNotFoundException e){
+            System.out.println("Problema com a classe!!!");
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
@@ -69,10 +110,27 @@ public class Main {
         Produto produto;
         Cliente cliente;
 
-        Mercearia mercearia = new Mercearia("Vendinha");
+        File f = new File("vendinha.bin");
 
-        //isso serve somente para testes...
-        inicializaMercearia(mercearia);
+        Mercearia mercearia = null;
+        if(f.exists()){
+            System.out.println("Deseja carregar os dados do arquivo? (1-sim)");
+            op = scan.nextInt();
+            if(op == 1){
+                mercearia = lerBinario();
+            }
+        }
+
+        if(mercearia == null){
+            mercearia = new Mercearia("Vendinha");
+            System.out.println("Deseja iniciar com dados sintéticos?(1-sim)");
+            op = scan.nextInt();
+            if(op == 1){
+                //isso serve somente para testes...
+                inicializaMercearia(mercearia);
+            }
+        }
+
 
         do{
             System.out.println(menu());
@@ -197,7 +255,11 @@ public class Main {
 
         }while(op != 0);
 
-
+        System.out.println("Deseja salvar os dados em arquivo? (1-sim)");
+        op = scan.nextInt();
+        if(op == 1){
+            salvarBinario(mercearia);
+        }
 
 
     }
