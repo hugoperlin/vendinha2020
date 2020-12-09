@@ -20,10 +20,12 @@
 
 
     <Label text="Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-    <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    <ComboBox fx:id="cbClientes" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#habilitarListView"/>
 
     <Label text="Produtos:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-    <ListView GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <ListView fx:id="lstwProdutos" disable="true"
+              GridPane.columnIndex="1" GridPane.rowIndex="1"
+              onMouseClicked="#atualizarTotal"/>
 
     <fx:define>
         <ToggleGroup fx:id="tipoVenda"/>
@@ -31,15 +33,16 @@
 
     <HBox GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowSpan="1">
         <Label text="Tipo de Venda:"/>
-        <RadioButton text="À Vista" toggleGroup="$tipoVenda"/>
-        <RadioButton text="À Prazo" toggleGroup="$tipoVenda"/>
+        <RadioButton fx:id="rbAVista" text="À Vista" toggleGroup="$tipoVenda" onAction="#atualizaLabelTipoValor"/>
+        <RadioButton fx:id="rbAPrazo" text="À Prazo" toggleGroup="$tipoVenda" onAction="#atualizaLabelTipoValor"/>
     </HBox>
 
-    <Label text="Valor:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+    <Label fx:id="lbTipoValor" text="Valor:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <TextField fx:id="tfTipoValor" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
     <Label text="Valor Total:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-    <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    <TextField fx:id="tfTotal" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
     <HBox GridPane.rowIndex="5" GridPane.columnIndex="1">
         <Button text="Salvar" onAction="#cadastrar"/>
