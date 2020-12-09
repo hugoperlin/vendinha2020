@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="mercearia.controles.JanelaRelatorio"
+      prefHeight="400.0" prefWidth="600.0" spacing="5">
+
+
+    <padding>
+        <Insets top="10" bottom="10" right="10" left="10"/>
+    </padding>
+
+
+    <TextArea fx:id="taRelatorio" editable="false" prefHeight="350"/>
+    <Button text="Fechar" onAction="#fechar" />
+
+
+
+
+</VBox>

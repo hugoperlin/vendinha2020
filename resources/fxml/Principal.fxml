@@ -25,6 +25,8 @@
             <Button text="Cadastar Cliente" onAction="#mostrarCadastroCliente"/>
             <Button text="Cadastar Produto" onAction="#mostrarCadastroProduto"/>
             <Button text="Realizar Venda" onAction="#mostrarRealizaVenda"/>
+            <Button text="Relatório" onAction="#mostrarRelatorio"/>
+
         </HBox>
     </top>
     <center>

@@ -118,5 +118,12 @@ public class Principal implements Initializable {
 
     }
 
+    @FXML
+    private void mostrarRelatorio(){
+
+        MainGui.mudaCena(MainGui.RELATORIO,(aClass)->new JanelaRelatorio(mercearia));
+
+    }
+
 
 }
