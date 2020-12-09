@@ -24,7 +24,7 @@
             </padding>
             <Button text="Cadastar Cliente" onAction="#mostrarCadastroCliente"/>
             <Button text="Cadastar Produto" onAction="#mostrarCadastroProduto"/>
-
+            <Button text="Realizar Venda" onAction="#mostrarRealizaVenda"/>
         </HBox>
     </top>
     <center>

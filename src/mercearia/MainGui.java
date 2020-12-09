@@ -19,6 +19,7 @@ public class MainGui extends Application {
     public static final String PRINCIPAL = "/fxml/Principal.fxml";
     public static final String CADASTROCLIENTE = "/fxml/JanelaCadastroCliente.fxml";
     public static final String CADASTROPRODUTO = "/fxml/JanelaCadastroProduto.fxml";
+    public static final String REALIZAVENDA = "/fxml/JanelaRealizaVenda.fxml";
 
 
 

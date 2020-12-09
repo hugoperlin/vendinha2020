@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="mercearia.controles.JanelaRealizaVenda"
+          prefHeight="400.0" prefWidth="600.0"
+            vgap="5" hgap="5"
+            >
+
+    <padding>
+        <Insets top="10" bottom="10" left="10" right="10"/>
+    </padding>
+
+
+    <Label text="Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+    <Label text="Produtos:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <ListView GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+    <fx:define>
+        <ToggleGroup fx:id="tipoVenda"/>
+    </fx:define>
+
+    <HBox GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowSpan="1">
+        <Label text="Tipo de Venda:"/>
+        <RadioButton text="À Vista" toggleGroup="$tipoVenda"/>
+        <RadioButton text="À Prazo" toggleGroup="$tipoVenda"/>
+    </HBox>
+
+    <Label text="Valor:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+    <Label text="Valor Total:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+    <HBox GridPane.rowIndex="5" GridPane.columnIndex="1">
+        <Button text="Salvar" onAction="#cadastrar"/>
+        <Button text="Cancelar" onAction="#cancelar"/>
+    </HBox>
+
+
+</GridPane>

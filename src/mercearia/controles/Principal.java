@@ -111,6 +111,12 @@ public class Principal implements Initializable {
 
     }
 
+    @FXML
+    private void mostrarRealizaVenda(){
+
+        MainGui.mudaCena(MainGui.REALIZAVENDA,(aClass)->new JanelaRealizaVenda(mercearia));
+
+    }
 
 
 }
