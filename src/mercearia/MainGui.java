@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import mercearia.controles.Principal;
 import mercearia.modelos.Mercearia;
 
+import java.io.*;
+
 public class MainGui extends Application {
 
     public static final String PRINCIPAL = "/fxml/Principal.fxml";
@@ -30,10 +32,36 @@ public class MainGui extends Application {
         Application.launch(args);
     }
 
+    //método executado na inicialização do sistema
+    @Override
+    public void init() throws Exception {
+        super.init();
+
+
+        //carregando os dados do disco...
+        File vendinha = new File("vendinha.bin");
+
+        if(vendinha.exists()){
+            try(ObjectInputStream obi = new ObjectInputStream(new FileInputStream(vendinha))){
+
+                mercearia = (Mercearia) obi.readObject();
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }catch (ClassNotFoundException e){
+                e.printStackTrace();
+            }
+        }else{
+            mercearia = new Mercearia("Teste...");
+        }
+
+
+    }
+
+    //método que prepara a janela
     @Override
     public void start(Stage stage) throws Exception {
 
-        mercearia = new Mercearia("Teste...");
         base = new StackPane();
 
 
@@ -48,6 +76,22 @@ public class MainGui extends Application {
 
     }
 
+    //método executado quando a aplicação é fechada
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+
+
+        //salvando os dados em disco
+        try(ObjectOutputStream obs = new ObjectOutputStream(new FileOutputStream(new File("vendinha.bin")))){
+
+            obs.writeObject(mercearia);
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
 
     public static void mudaCena(String fxml, Callback controllerFactory){
         try{
@@ -67,10 +111,9 @@ public class MainGui extends Application {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
-
     }
+
+
 
 
 

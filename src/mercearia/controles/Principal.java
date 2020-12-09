@@ -18,9 +18,6 @@ public class Principal implements Initializable {
     @FXML
     private ListView<Cliente> lstwClientes;
 
-
-
-
     private Mercearia mercearia;
 
     public Principal(Mercearia mercearia){
