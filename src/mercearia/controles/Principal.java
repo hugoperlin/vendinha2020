@@ -8,6 +8,7 @@ import javafx.util.Callback;
 import mercearia.MainGui;
 import mercearia.modelos.Cliente;
 import mercearia.modelos.Mercearia;
+import mercearia.modelos.Produto;
 
 import java.net.URL;
 import java.util.List;
@@ -17,6 +18,9 @@ public class Principal implements Initializable {
 
     @FXML
     private ListView<Cliente> lstwClientes;
+
+    @FXML
+    private ListView<Produto> lstwProdutos;
 
     private Mercearia mercearia;
 
@@ -42,6 +46,37 @@ public class Principal implements Initializable {
         });
 
         atualizaListaClientes();
+
+
+        lstwProdutos.setCellFactory((produtoListView -> new ListCell<>(){
+            @Override
+            protected void updateItem(Produto produto, boolean b) {
+                super.updateItem(produto, b);
+
+                if(produto != null){
+                    setText(produto.getNome());
+                }else{
+                    setText("");
+                }
+            }
+        }));
+
+
+        autalizaListaProdutos();
+
+
+
+    }
+
+    private void autalizaListaProdutos() {
+
+        List<Produto> produtos = mercearia.getProdutos();
+
+        lstwProdutos.getItems().clear();
+
+        for(Produto p:produtos){
+            lstwProdutos.getItems().add(p);
+        }
 
     }
 

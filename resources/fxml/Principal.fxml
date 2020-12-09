@@ -35,7 +35,7 @@
             </VBox>
             <VBox spacing="5">
                 <Label text="Produtos:"/>
-                <ListView />
+                <ListView fx:id=""lstwProdutos/>
             </VBox>
         </HBox>
     </center>
