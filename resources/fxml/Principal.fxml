@@ -29,7 +29,7 @@
         <HBox spacing="10">
             <VBox spacing="5">
                 <Label text="Clientes:"/>
-                <ListView />
+                <ListView fx:id="lstwClientes"/>
             </VBox>
             <VBox spacing="5">
                 <Label text="Produtos:"/>

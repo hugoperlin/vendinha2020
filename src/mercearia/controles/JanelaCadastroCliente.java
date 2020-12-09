@@ -58,8 +58,7 @@ public class JanelaCadastroCliente {
         }else{
             mensagem(Alert.AlertType.INFORMATION,"Cliente cadastrado!!");
 
-;
-            System.out.println(mercearia);
+;           MainGui.mudaCena(MainGui.PRINCIPAL,(aClass)->new Principal(mercearia));
 
         }
 
