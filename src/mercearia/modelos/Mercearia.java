@@ -1,6 +1,4 @@
-package controles;
-
-import modelos.*;
+package mercearia.modelos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -46,6 +44,7 @@ public class Mercearia implements Serializable {
     }
 
     public Cliente buscarCliente(String nome){
+
 
         Cliente c = new Cliente(nome);
         int pos = this.clientes.indexOf(c);

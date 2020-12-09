@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="mercearia.controles.Principal"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <padding>
+        <Insets top="10" bottom="10" left="10" right="10"/>
+    </padding>
+
+    <top>
+
+        <HBox spacing="10">
+            <padding>
+                <Insets bottom="10"/>
+            </padding>
+            <Button text="Cadastar Clientes" onAction="#mostrarCadastroCliente"/>
+        </HBox>
+    </top>
+    <center>
+        <HBox spacing="10">
+            <VBox spacing="5">
+                <Label text="Clientes:"/>
+                <ListView />
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Produtos:"/>
+                <ListView />
+            </VBox>
+        </HBox>
+    </center>
+
+
+
+
+
+</BorderPane>

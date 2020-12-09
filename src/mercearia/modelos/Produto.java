@@ -1,4 +1,4 @@
-package modelos;
+package mercearia.modelos;
 
 import java.io.Serializable;
 import java.util.Objects;

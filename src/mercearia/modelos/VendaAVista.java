@@ -1,4 +1,4 @@
-package modelos;
+package mercearia.modelos;
 
 public class VendaAVista extends Venda{
 

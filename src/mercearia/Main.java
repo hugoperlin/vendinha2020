@@ -1,6 +1,8 @@
-import controles.Mercearia;
-import modelos.Cliente;
-import modelos.Produto;
+package mercearia;
+
+import mercearia.modelos.Mercearia;
+import mercearia.modelos.Cliente;
+import mercearia.modelos.Produto;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,11 +1,10 @@
-import controles.Mercearia;
-import modelos.Cliente;
-import modelos.Produto;
-import modelos.Venda;
+package mercearia;
+
+import mercearia.modelos.Mercearia;
+import mercearia.modelos.Cliente;
+import mercearia.modelos.Produto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class MainTeste {
 
