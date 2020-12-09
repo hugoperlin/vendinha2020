@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Interface para cadastrar um cliente -->
+
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>

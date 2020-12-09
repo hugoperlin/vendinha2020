@@ -9,12 +9,23 @@ import mercearia.modelos.Mercearia;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Janela para mostrar um relatório atual da merceria
+ */
+
 public class JanelaRelatorio implements Initializable {
 
     @FXML
     private TextArea taRelatorio;
 
     private Mercearia mercearia;
+
+    /**
+     *
+     * Cria um novo objeto de controle da interface de relatório
+     *
+     * @param mercearia referência para um objeto mercearia criado externamente
+     */
 
     public JanelaRelatorio(Mercearia mercearia) {
         this.mercearia = mercearia;
@@ -25,6 +36,11 @@ public class JanelaRelatorio implements Initializable {
         taRelatorio.setText(mercearia.toString());
     }
 
+    /**
+     * Fechar
+     * Ao usuário clicar no método cancelar,
+     * muda a cena para a janela principal
+     * */
     @FXML
     private void fechar(){
 

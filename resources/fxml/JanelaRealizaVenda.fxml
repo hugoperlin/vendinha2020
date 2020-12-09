@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Interface para realizar uma venda.
+Note que alguns componentes foram incializados para permitir um
+melhor controle das ações do usuário. Por exemplo, o ListView de produtos
+só será habilitado após o usuário selecionar um cliente no ComboBox -->
+
+
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>

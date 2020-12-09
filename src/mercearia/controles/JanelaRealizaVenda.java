@@ -1,5 +1,9 @@
 package mercearia.controles;
 
+/**
+ * Janela para realizar uma venda
+ */
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,6 +49,17 @@ public class JanelaRealizaVenda implements Initializable {
     }
 
 
+    /**
+     *Inicializa a cena povoando o ComboBox com a lista de clientes e
+     * também a ListView com os produtos.
+     * Note que a forma de renderizar as células do ComboBox e da ListView
+     * foram alteradas através do setCellFactory. Para o cliente é utilizado
+     * o nome e para o produto é utilizado o nome seguido do preço.
+     * Também são desabilitados e escondidos alguns componentes para
+     * aumetar o controle da interação do usuário.
+    ***/
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -81,14 +96,19 @@ public class JanelaRealizaVenda implements Initializable {
         populaListaProdutos();
 
 
+        //ao setar visible como false, o componente é escondido
         lbTipoValor.setVisible(false);
         tfTipoValor.setVisible(false);
+        //ao setar disable como true, o componente não permite intereção
         rbAVista.setDisable(true);
         rbAPrazo.setDisable(true);
 
     }
 
 
+    /**
+     * Percorre a lista de clientes da mercearia e insere no ComboBox
+     */
     private void populaComboClientes(){
 
         List<Cliente> clientes = mercearia.getClientes();
@@ -100,6 +120,10 @@ public class JanelaRealizaVenda implements Initializable {
         }
 
     }
+
+    /**
+     * Percorre a lista de produtos da mercearia e insere no ListView
+     * */
 
     private void populaListaProdutos(){
 
@@ -113,11 +137,25 @@ public class JanelaRealizaVenda implements Initializable {
 
     }
 
+
+    /**
+     * Quando o usuário seleciona um cliente no ComboBox,
+     * habilitamos a ListView para que ele possa escolher os produtos.
+     */
+
     @FXML
     private void habilitarListView(){
         lstwProdutos.setDisable(false);
     }
 
+
+    /**
+     * Quando o usuário escolhe um produto na ListView,
+     * atualizamos o valor total mostrado.
+     * Além disso, verificamos se o usuário selecionou ao menos
+     * um produto, para então habilitar a escolha do tipo de venda.
+     *
+     */
 
     @FXML
     private void atualizarTotal(){
@@ -145,6 +183,14 @@ public class JanelaRealizaVenda implements Initializable {
 
     }
 
+    /**
+     * Quando o usuário clica em um dos RadioButtons,
+     * alteramos o label do tipo de valor, para melhor
+     * informar o que está acontecendo.
+     * @param event
+     */
+
+
     @FXML
     private void atualizaLabelTipoValor(Event event){
 
@@ -157,7 +203,12 @@ public class JanelaRealizaVenda implements Initializable {
 
     }
 
-
+    /***
+     * Quando o usuário clicar no botão de cadastrar a venda,
+     * pegamos os dados inseridos pelo usuário nos componentes,
+     * validamos e inserimos na mercearia. Caso não existam erros, retornamos
+     * para a janela principal.
+     */
     @FXML
     private void cadastrar(){
 
@@ -189,7 +240,11 @@ public class JanelaRealizaVenda implements Initializable {
         MainGui.mudaCena(MainGui.PRINCIPAL,(aClass)->new Principal(mercearia));
     }
 
-
+    /**
+     * Cancelar
+     * Ao usuário clicar no método cancelar,
+     * muda a cena para a janela principal
+     * */
     @FXML
     private void cancelar(){
 
@@ -197,6 +252,15 @@ public class JanelaRealizaVenda implements Initializable {
 
     }
 
+
+    /**
+     *
+     * Mostra um pop-up com uma mensagem e um ícone
+     *
+     * Ícones:
+     * Alert.AlertType.ERROR - indica erro
+     * Alert.AlertType.INFORMATION - indica uma informação
+     * */
     private void mensagem(Alert.AlertType type, String msg){
         Alert alert = new Alert(type,msg);
         alert.showAndWait();

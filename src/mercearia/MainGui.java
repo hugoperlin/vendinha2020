@@ -14,7 +14,20 @@ import mercearia.modelos.Mercearia;
 
 import java.io.*;
 
+
+/**
+ * Classe principal para a interface gráfica da vendinha.
+ * Além de incializar o sistema também permite a mudança de cena
+ */
+
 public class MainGui extends Application {
+
+    /**
+     * Atributos estáticos com o caminho para cada fxml. Note que o caminho
+     * é relativo para a pasta resources do projeto. Utilizado pelo método mudaCena.
+     * Caso queira inserir uma nova janela, crie um novo atributo e indique o caminho
+     * do fxml.
+     */
 
     public static final String PRINCIPAL = "/fxml/Principal.fxml";
     public static final String CADASTROCLIENTE = "/fxml/JanelaCadastroCliente.fxml";
@@ -23,7 +36,18 @@ public class MainGui extends Application {
     public static final String RELATORIO = "/fxml/JanelaRelatorio.fxml";
 
 
+    /**
+     * Atributo que representa a mercearia. Será utilizado
+     * por todas as janelas, através da injeção de dependência.
+     */
     private static Mercearia mercearia;
+
+
+    /**
+     * Atrituto que repreenta o gerenciador base que será inserido
+     * no stage. Por ser um StackPane, podemos inserir outros gerenciadores
+     * de layout que sempre serão mostrados por cima.
+     */
 
     private static StackPane base;
 
@@ -34,7 +58,14 @@ public class MainGui extends Application {
         Application.launch(args);
     }
 
-    //método executado na inicialização do sistema
+    /**
+     * Método executado no iníco da aplicação JavaFX.
+     * Utilizamos para carregar os dados do disco e criar
+     * uma mercearia a partir do arquivo binário.
+     * Se o arquivo não existir, criamos uma vendinha nova.
+     *
+     * @throws Exception
+     */
     @Override
     public void init() throws Exception {
         super.init();
@@ -60,7 +91,16 @@ public class MainGui extends Application {
 
     }
 
-    //método que prepara a janela
+    /**
+     *
+     * Método que é executado antes de mostrar a janela.
+     * Alocamos o StackPane e colocamos na cena base.
+     *
+     * Invocamos o método mudaCena para carregar a cena principal.
+     *
+     * @param stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -78,7 +118,13 @@ public class MainGui extends Application {
 
     }
 
-    //método executado quando a aplicação é fechada
+    /**
+     *
+     * Método executado sempre quando a aplicação é fechada.
+     * Utilizamos para salvar o objeto mercearia no disco.
+     *
+     * @throws Exception
+     */
     @Override
     public void stop() throws Exception {
         super.stop();
@@ -94,6 +140,17 @@ public class MainGui extends Application {
         }
 
     }
+
+    /**
+     *
+     * Método que permite mudar o conteúdo da janela, permitindo
+     * assim a troca de cena, navegando o usuário entre as funcionalidades do sistema.
+     * Pode ser invocado de qualquer uma das classes do projeto.
+     *
+     * @param fxml o conteúdo deve ser o especificado por um dos atributos estáticos da classe MainGui
+     * @param controllerFactory lamba expression com um objeto do controlador da janela que será criada
+     */
+
 
     public static void mudaCena(String fxml, Callback controllerFactory){
         try{
@@ -114,9 +171,5 @@ public class MainGui extends Application {
             e.printStackTrace();
         }
     }
-
-
-
-
-
+    
 }

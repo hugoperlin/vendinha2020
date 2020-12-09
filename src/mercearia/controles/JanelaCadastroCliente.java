@@ -27,6 +27,17 @@ public class JanelaCadastroCliente {
     }
 
 
+    /***
+     * Cadastro de cliente
+     * Ao usuário clicar no botão cadastrar na janela de cadastro de cliente,
+     * este método será executado.
+     * 1 - Acessa os dados inseridos pelo usuário nos TextField.
+     * 2 - Valida os dados inseridos pelo usuário
+     * 3 - Insere o novo cliente na mercearia
+     * 4 - Dependendo do resultado, mostra uma mensagem de sucesso e retorna para a
+     * janela principal ou mostra uma mensagem de erro e fica na mesma janela.     *
+     */
+
     @FXML
     private void cadastrar(){
 
@@ -58,6 +69,8 @@ public class JanelaCadastroCliente {
         }else{
             mensagem(Alert.AlertType.INFORMATION,"Cliente cadastrado!!");
 
+            //Retorna para a janela principal. Note que é necessário passar uma lambda expression
+            //para indicar qual controlador da janela deve ser utilizado.
 ;           MainGui.mudaCena(MainGui.PRINCIPAL,(aClass)->new Principal(mercearia));
 
         }
@@ -65,8 +78,28 @@ public class JanelaCadastroCliente {
 
     }
 
+    /**
+     * Cancelar
+     * Ao usuário clicar no método cancelar,
+     * muda a cena para a janela principal
+     * */
 
 
+    @FXML
+    private void cancelar(){
+
+        MainGui.mudaCena(MainGui.PRINCIPAL,(aClass)->new Principal(mercearia));
+
+    }
+
+    /**
+     *
+     * Mostra um pop-up com uma mensagem e um ícone
+     *
+     * Ícones:
+     * Alert.AlertType.ERROR - indica erro
+     * Alert.AlertType.INFORMATION - indica uma informação
+     * */
 
     private void mensagem(Alert.AlertType type, String msg){
         Alert alert = new Alert(type,msg);

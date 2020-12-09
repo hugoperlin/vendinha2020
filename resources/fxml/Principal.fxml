@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Interface da janela Principal, a partir dela
+o usuário chega em qualquer outra janela do sistema -->
+
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -37,7 +40,7 @@
             </VBox>
             <VBox spacing="5">
                 <Label text="Produtos:"/>
-                <ListView fx:id=""lstwProdutos/>
+                <ListView fx:id="lstwProdutos"/>
             </VBox>
         </HBox>
     </center>
