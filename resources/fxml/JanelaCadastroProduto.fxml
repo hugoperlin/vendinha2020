@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="mercearia.controles.JanelaCadastroProduto"
+          prefHeight="400.0" prefWidth="600.0"
+            vgap="5" hgap="5"
+            >
+
+    <padding>
+        <Insets top="10" bottom="10" left="10" right="10"/>
+    </padding>
+
+
+
+    <Label text="Nome:" labelFor="$tfNome" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <TextField fx:id="tfNome" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+    <Label text="Preço:" labelFor="$tfPreco" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <TextField fx:id="tfPreco" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+    <HBox GridPane.rowIndex="3" GridPane.columnIndex="1">
+        <Button text="Salvar" onAction="#cadastrar"/>
+        <Button text="Cancelar" onAction="#cancelar"/>
+    </HBox>
+
+
+
+</GridPane>

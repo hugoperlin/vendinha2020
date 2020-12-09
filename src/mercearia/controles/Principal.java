@@ -69,6 +69,13 @@ public class Principal implements Initializable {
     }
 
 
+    @FXML
+    private void mostrarCadastroProduto(){
+
+        MainGui.mudaCena(MainGui.CADASTROPRODUTO,(aClass)->new JanelaCadastroProduto(mercearia));
+
+    }
+
 
 
 }

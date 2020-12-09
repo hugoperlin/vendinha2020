@@ -22,7 +22,9 @@
             <padding>
                 <Insets bottom="10"/>
             </padding>
-            <Button text="Cadastar Clientes" onAction="#mostrarCadastroCliente"/>
+            <Button text="Cadastar Cliente" onAction="#mostrarCadastroCliente"/>
+            <Button text="Cadastar Produto" onAction="#mostrarCadastroProduto"/>
+
         </HBox>
     </top>
     <center>
